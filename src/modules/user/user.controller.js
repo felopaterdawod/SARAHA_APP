@@ -1,4 +1,5 @@
 import { Router } from "express";
+<<<<<<< HEAD
 import { profile, rotateToken } from "./user.service.js";
 import { successResponse } from "../../common/utils/index.js"
 import { authentication, authorization } from "../../middleware/authentication.middleware.js";
@@ -18,4 +19,13 @@ router.get("/rotate" ,authentication(TokenTypeEnum.refresh) ,async(req,res,next)
     return successResponse({res,data:{account}})
 })
 
+=======
+import { profile } from "./user.service.js";
+const router=Router()
+
+router.get("/" , (req,res,next)=>{
+    const result  = profile(req.query.id)
+    return res.status(200).json({message:"Profile" , result})
+})
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 export default router

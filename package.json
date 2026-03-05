@@ -17,7 +17,10 @@
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+<<<<<<< HEAD
     "jsonwebtoken": "^9.0.3",
+=======
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
     "mongoose": "^9.2.0",
     "mongose": "^0.0.2-security",
     "nodemailer": "^8.0.1"

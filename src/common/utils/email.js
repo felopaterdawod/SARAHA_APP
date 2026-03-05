@@ -25,7 +25,11 @@ It expires in 5 minutes.
 
 Ignore this email if you didn't sign up.
 
+<<<<<<< HEAD
 Made with ❤️ by Felopater Dawoud
+=======
+Made with ❤️ by Felopateer Dawoud
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 `,
 });
 };

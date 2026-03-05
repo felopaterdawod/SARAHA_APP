@@ -3,6 +3,17 @@ import { SALT_ROUND } from "../../../../config/config.service.js";
 import * as argon2 from 'argon2'
 import { HashApproachEnum } from "../../enums/security.enum.js";
 
+<<<<<<< HEAD
+=======
+// export  const generateHash = async ({plainText,salt=SALT_ROUND,minor='b'}={})=>{
+    
+//     const generatedSalt=await genSalt(salt,minor)
+
+//     return await hash(plainText,generatedSalt)
+
+// }  
+
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 export const generateHash = async ({plaintext,salt=SALT_ROUND,minor='b',approach=HashApproachEnum.bcrypt}={})=>{
     let hashvalue;
     switch (approach) {

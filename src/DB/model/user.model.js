@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 import {
   GenderEnum,
   ProviderEnum,
+<<<<<<< HEAD
   RoleEnum,
+=======
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
   
 } from "../../common/enums/user.enum.js";
 
@@ -42,12 +45,17 @@ isVerified: {
 },
 
     gender: {
+<<<<<<< HEAD
       type: Number,
+=======
+      type: String,
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
       enum: Object.values(GenderEnum),
       default: GenderEnum.Male,
     },
 
     provider: {
+<<<<<<< HEAD
       type: Number,
       enum: Object.values(ProviderEnum),
       default: ProviderEnum.System,
@@ -58,6 +66,12 @@ isVerified: {
       enum: Object.values(RoleEnum),
       default: RoleEnum.user,
     },
+=======
+      type: String,
+      enum: Object.values(ProviderEnum),
+      default: ProviderEnum.System,
+    },
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
     profilePicture: String,
     coverProfilePicture: [String],
     confirmEmail: Date,

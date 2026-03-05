@@ -1,2 +1,10 @@
 ./config/.env.development
+<<<<<<< HEAD
 ./config/.env.production
+=======
+./config/.env.production
+
+
+node_modules/
+.env
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0

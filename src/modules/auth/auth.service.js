@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { createOne, findOne } from "../../DB/database.repository.js";
 import {
   compareHash,
@@ -54,16 +55,80 @@ export const signup = async (inputs) => {
   }
   return user;
 };
+=======
+import { createOne, findOne } from '../../DB/database.repository.js';
+import { compareHash, ConflictExecption, generateHash, generateOTP, NotFoundExecption, sendEmail } from '../../common/utils/index.js';
+import { UserModel } from '../../DB/index.js';
+import { HashApproachEnum } from '../../common/enums/security.enum.js';
+
+
+
+export const signup = async (inputs) => {
+const {username,email,password,phone}=inputs;
+const otp = generateOTP();
+
+
+const checkUserExist = await findOne({
+    model:UserModel,
+    filter:{email}
+
+})
+
+if(checkUserExist)
+    throw ConflictExecption({message:'email Exist.'})
+
+
+
+const user = await createOne({
+    model:UserModel,
+    data:{
+        username,
+        email,
+        password: await generateHash({plaintext:password,approach:HashApproachEnum.bcrypt}),
+        phone,
+        otp,
+        otpExpires: Date.now() + 5 * 60 * 1000,
+        isVerified: false
+    },
+    
+}
+
+)
+try {
+
+  await sendEmail(email, otp);
+  
+
+} catch (error) {
+  console.log("Email error:", error);
+}
+return user
+}
+
+
+
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 
 export const verifyOTP = async ({ email, otp }) => {
   const user = await findOne({
     model: UserModel,
+<<<<<<< HEAD
     filter: { email },
   });
 
   if (!user) throw NotFoundExecption({ message: "User not found" });
 
   if (user.otp != otp) throw ConflictExecption({ message: "Invalid OTP" });
+=======
+    filter: { email }
+  });
+
+  if (!user)
+    throw NotFoundExecption({ message: "User not found" });
+
+  if (user.otp != otp)
+    throw ConflictExecption({ message: "Invalid OTP" });
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 
   if (user.otpExpires < Date.now())
     throw ConflictExecption({ message: "OTP expired" });
@@ -73,13 +138,19 @@ export const verifyOTP = async ({ email, otp }) => {
     {
       isVerified: true,
       otp: null,
+<<<<<<< HEAD
       otpExpires: null,
     },
+=======
+      otpExpires: null
+    }
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
   );
 
   return { message: "Account verified" };
 };
 
+<<<<<<< HEAD
 export const login = async (inputs, issuer) => {
   const { email, password } = inputs;
 
@@ -104,3 +175,46 @@ export const login = async (inputs, issuer) => {
 
   return await createLoginCredentials(user , issuer)
 };
+=======
+
+
+
+
+
+export const login = async (inputs)=>{
+    const {email ,password} = inputs
+
+
+    const user = await findOne({
+        model:UserModel,
+        filter:{email},
+        options:{lean:true}
+    })
+
+
+
+       if (!user.isVerified)
+  throw ConflictExecption({
+    message: "Please verify your email first"
+  });
+
+
+
+
+    if(!await compareHash({plaintext:password , cipherText:user.password}) )
+        throw NotFoundExecption({message: "Invalid Login credentials."})
+
+
+
+    if(!user)
+        throw NotFoundExecption({message:"Invalid Login credentials.."});
+
+    
+
+
+ 
+    
+
+    return user
+}
+>>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
