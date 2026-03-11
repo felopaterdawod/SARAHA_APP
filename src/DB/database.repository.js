@@ -4,7 +4,6 @@ export const createOne = async ({model,data={},options={validateBeforeSave:true}
 }
 
 
-<<<<<<< HEAD
 
 
 
@@ -14,8 +13,6 @@ export const createOne = async ({model,data={},options={validateBeforeSave:true}
 
 
 
-=======
->>>>>>> f75e7dc87777f915c3dec3a563d30c688d626ac0
 export const findById = async ({
   id,
   options,
