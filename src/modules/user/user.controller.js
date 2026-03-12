@@ -13,6 +13,11 @@ router.get("/" ,authentication(TokenTypeEnum.access),authorization(endpoint.prof
 })
 
 
+router.get('/:userId/share-profile',async(req,res,next)=>{
+    const account = await shareProfile(req.params.userId)
+    return successResponse({res, data:{account}})
+})
+
 router.get("/rotate" ,authentication(TokenTypeEnum.refresh) ,async(req,res,next)=>{
     const account  = await rotateToken(req.user, `${req.protocol}://${req.host}`)
     return successResponse({res,data:{account}})
